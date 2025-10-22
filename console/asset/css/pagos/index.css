@@ -1,0 +1,26 @@
+/* /console/asset/css/pagos/index.css */
+/* No toca sidebar; sólo estilos locales */
+
+:root { --tap-size:44px; }
+.card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:1rem;padding:1.25rem}
+.pill{padding:.75rem;border-radius:999px}
+.pill-green{background:rgba(16,185,129,.15)}
+.pill-yellow{background:rgba(234,179,8,.15)}
+.pill-red{background:rgba(239,68,68,.15)}
+.pill-blue{background:rgba(59,130,246,.15)}
+.kpi{font-size:1.5rem;font-weight:700;color:var(--text-primary)}
+.muted{color:var(--text-secondary);font-size:.9rem}
+
+/* Paginador reutilizable */
+.pager{display:flex;gap:.5rem;align-items:center;justify-content:center}
+.pager button{min-width:var(--tap-size);min-height:36px;padding:.5rem .75rem;border-radius:.5rem;border:1px solid var(--border-color);background:var(--input-bg)}
+.pager .is-active{background:#4f46e5;color:#fff;border-color:#4f46e5}
+
+/* Modal accesible (no bloquea scroll general) */
+.modal{opacity:0}
+.modal:not(.pointer-events-none){opacity:1}
+.modal-content{transform:scale(.98);max-height:90vh;overflow:auto}
+.modal:not(.pointer-events-none) .modal-content{transform:scale(1)}
+
+/* Foco */
+:focus-visible{outline:2px solid #4f46e5;outline-offset:2px}

@@ -1,0 +1,77 @@
+/* ===== Variables (hereda de tu theme global) ===== */
+:root{
+  --sidebar-bg:#F9FAFB; --sidebar-text:#4B5563; --sidebar-text-hover:#111827;
+  --sidebar-active-bg:#E5E7EB; --sidebar-active-text:#1F2937;
+  --main-bg:#F3F4F6; --header-bg:#FFFFFF; --card-bg:#FFFFFF;
+  --text-primary:#111827; --text-secondary:#6B7280; --border-color:#E5E7EB; --input-bg:#FFFFFF;
+}
+html.dark{
+  --sidebar-bg:#111827; --sidebar-text:#9CA3AF; --sidebar-text-hover:#F9FAFB;
+  --sidebar-active-bg:#374151; --sidebar-active-text:#F9FAFB;
+  --main-bg:#0F172A; --header-bg:#111827; --card-bg:#0B1220;
+  --text-primary:#F8FAFC; --text-secondary:#CBD5E1; --border-color:#243244; --input-bg:#0F172A;
+}
+
+/* ===== Base ===== */
+body{background:var(--main-bg);color:var(--text-primary);font-feature-settings:"cv02","cv03","cv04";}
+.sidebar,.main-content{transition:all .25s ease}
+
+/* Controles */
+input[type="search"],select,textarea{
+  background:var(--input-bg); color:var(--text-primary);
+  border:1px solid var(--border-color); border-radius:.75rem; outline:none;
+}
+input[type="search"]::placeholder{color:var(--text-secondary)}
+select{appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--text-secondary) 50%),linear-gradient(135deg,var(--text-secondary) 50%,transparent 50%);
+  background-position:calc(100% - 18px) calc(1em + 2px),calc(100% - 13px) calc(1em + 2px);
+  background-size:5px 5px,5px 5px; background-repeat:no-repeat; padding-right:2.25rem;
+}
+
+/* ===== Grid de tarjetas ===== */
+#cli-grid{display:grid; gap:1rem}
+@media (min-width:640px){ #cli-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:1280px){ #cli-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+
+/* ===== Card ===== */
+.card{
+  background:var(--card-bg);
+  border:1px solid var(--border-color);
+  border-radius:14px;
+  box-shadow:0 1px 2px rgb(0 0 0 / .05);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.card:hover{transform:translateY(-2px); box-shadow:0 12px 20px -8px rgb(0 0 0 / .12)}
+html.dark .card{box-shadow:0 1px 2px rgb(0 0 0 / .25)}
+html.dark .card:hover{box-shadow:0 12px 24px -12px rgb(0 0 0 / .45)}
+
+.card .title{font-weight:600;color:var(--text-primary)}
+.card .sub{font-size:.875rem;color:var(--text-secondary)}
+.card .row{display:flex;align-items:center;gap:.5rem;color:var(--text-primary);font-size:.925rem}
+.card .row i{color:var(--text-secondary)}
+.card .divider{height:1px;background:var(--border-color);margin:.75rem 0 0 0}
+.badge{
+  display:inline-block;padding:.2rem .55rem;border-radius:9999px;
+  background:rgba(148,163,184,.18); color:var(--text-secondary); font-size:.75rem; font-weight:600;
+}
+
+/* ===== Dropzone import ===== */
+.dropzone{
+  border:2px dashed var(--border-color); border-radius:12px; background:transparent; transition:all .2s ease;
+}
+.dropzone.is-dragover{border-color:#6366F1; background:rgba(99,102,241,.08)}
+html.dark .dropzone.is-dragover{background:rgba(99,102,241,.12)}
+.locked>*{pointer-events:none;opacity:.55}
+
+/* ===== Botón “Cargar más” ===== */
+#cli-more{
+  min-width:9rem; height:2.5rem; border:1px solid var(--border-color); border-radius:.75rem;
+  background:var(--card-bg); color:var(--text-primary);
+}
+#cli-more:hover{border-color:#A5B4FC; color:#4F46E5}
+html.dark #cli-more:hover{border-color:#6366F1; color:#A5B4FC}
+
+/* ===== Móvil ===== */
+@media (max-width:640px){
+  .filters-wrap{display:flex;gap:.75rem;overflow-x:auto;scrollbar-width:none}
+  .filters-wrap>*{flex:0 0 260px}
+}

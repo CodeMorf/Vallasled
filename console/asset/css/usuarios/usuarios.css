@@ -1,0 +1,32 @@
+/* Modal y toast */
+.toast{position:fixed;right:16px;bottom:16px;z-index:70}
+.modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);z-index:60}
+.modal-backdrop.show{display:flex}
+
+/* Contenido del modal */
+.modal{
+  width:95%;max-width:760px;
+  background:var(--card-bg);color:var(--text-primary);
+  border:1px solid var(--border-color);border-radius:14px;
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+  transform:scale(.98);opacity:0;
+  transition:transform .18s ease,opacity .18s ease;
+}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border-color)}
+.modal-body{padding:16px;max-height:min(70vh,68dvh);overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y}
+
+/* Animación al mostrar */
+.modal-backdrop.show .modal{transform:scale(1);opacity:1}
+
+/* Inputs y botones */
+.inp{width:100%;border:1px solid var(--border-color);background:var(--input-bg);border-radius:.5rem;padding:.5rem .75rem}
+.btn-outline{padding:.5rem .9rem;border:1px solid var(--border-color);border-radius:.5rem}
+.btn-primary{padding:.5rem .9rem;border-radius:.5rem;background:#4f46e5;color:#fff}
+
+/* Responsivo */
+@media (max-width:640px){
+  .modal{width:100%;margin:0 10px}
+}
+
+/* Tabla */
+#usr-pager{gap:.5rem}

@@ -1,0 +1,21 @@
+/* /console/vallas/agregar/vallas_agregar.css */
+:root { --card-bg:#fff; --border:#e5e7eb; }
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:0.75rem}
+.card-h{padding:0.75rem 1rem;border-bottom:1px solid var(--border);font-weight:600}
+.card-b{padding:1rem}
+.lbl{display:block;font-size:.85rem;color:#374151;margin-bottom:.25rem}
+.inp{width:100%;border:1px solid var(--border);border-radius:0.5rem;padding:.55rem .75rem;background:#fff}
+.inp:focus{outline:none;border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15)}
+.chk{width:1.1rem;height:1.1rem}
+.btn{background:#111827;color:#fff;border-radius:.6rem;padding:.55rem .9rem}
+.btn:hover{background:#0b1220}
+.btn-subtle{background:#f3f4f6;border:1px solid var(--border);border-radius:.6rem;padding:.55rem .7rem}
+.btn-subtle:hover{background:#e5e7eb}
+.dropzone{border:2px dashed #cbd5e1;border-radius:0.75rem;height:220px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fafafa;position:relative;overflow:hidden}
+.dropzone.drag{background:#eef2ff;border-color:#818cf8}
+.dropzone img{height:100%;object-fit:cover}
+.dz-internal{text-align:center;color:#64748b}
+.map{height:260px;border:1px solid var(--border);border-radius:0.75rem}
+.street{height:180px;border:1px solid var(--border);border-radius:0.75rem}
+.lock-btn{display:inline-flex;align-items:center;gap:.4rem;border:1px solid var(--border);padding:.35rem .6rem;border-radius:.6rem;background:#f9fafb}
+.lock-btn[aria-pressed="false"]{background:#eef2ff;border-color:#818cf8}

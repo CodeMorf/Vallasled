@@ -1,0 +1,9 @@
+/* /console/asset/css/config/config.css */
+.tab-buttons .tab-button{
+  padding:1rem .75rem;margin-right:.25rem;
+  font-size:.9rem;font-weight:500;
+  border-bottom:2px solid transparent;color:var(--text-secondary);
+}
+.tab-buttons .tab-button.active{border-bottom-color:#4f46e5;color:var(--text-primary)}
+.inp{width:100%;border:1px solid var(--border-color);background:var(--input-bg);border-radius:.5rem;padding:.625rem .75rem}
+.btn-primary{padding:.6rem .95rem;border-radius:.6rem;background:#4f46e5;color:#fff}

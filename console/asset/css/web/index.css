@@ -1,0 +1,83 @@
+/* /console/asset/css/web/index.css */
+
+/* ---------- Variables ---------- */
+:root {
+  --main-bg: #F3F4F6;
+  --header-bg: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --border-color: #E5E7EB;
+  --input-bg: #FFFFFF;
+}
+
+html.dark {
+  --main-bg: #1F2937;
+  --header-bg: #111827;
+  --card-bg: #374151;
+  --text-primary: #F9FAFB;
+  --text-secondary: #D1D5DB;
+  --border-color: #4B5563;
+  --input-bg: #4B5563;
+}
+
+/* ---------- Base ---------- */
+body {
+  background-color: var(--main-bg);
+  color: var(--text-primary);
+}
+
+/* ---------- Layout ---------- */
+.main-content { transition: all .3s ease-in-out; }
+
+/* ---------- Form ---------- */
+#web-form input[type="text"],
+#web-form input[type="number"],
+#web-form input[type="email"],
+#web-form input[type="tel"],
+#web-form textarea {
+  outline: none;
+  background: var(--input-bg);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+/* ---------- Image previews ---------- */
+#logo_preview,
+#favicon_preview {
+  object-fit: contain;
+  border-radius: .375rem;
+  background: #e5e7eb;
+}
+html.dark #logo_preview,
+html.dark #favicon_preview { background: #374151; }
+
+/* ---------- Toggle (banner) ---------- */
+label.relative.w-10.h-6 > input.sr-only + span {
+  background-color: #d1d5db;
+  border-radius: 999px;
+  transition: background-color .2s ease;
+}
+label.relative.w-10.h-6 > input.sr-only:checked + span {
+  background-color: #4f46e5;
+}
+label.relative.w-10.h-6 > input.sr-only + span + span {
+  transition: transform .2s ease;
+}
+label.relative.w-10.h-6 > input.sr-only:checked + span + span {
+  transform: translateX(16px);
+}
+
+/* ---------- Toast ---------- */
+#web-toast {
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity, transform;
+}

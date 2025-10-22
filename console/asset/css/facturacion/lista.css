@@ -1,0 +1,127 @@
+/* /console/asset/css/facturacion/lista.css */
+
+/* Variables base (hereda del theme global) */
+:root{
+  --sidebar-bg:#F9FAFB;--sidebar-text:#4B5563;--sidebar-text-hover:#111827;
+  --sidebar-active-bg:#E5E7EB;--sidebar-active-text:#1F2937;
+  --main-bg:#F3F4F6;--header-bg:#FFFFFF;--card-bg:#FFFFFF;
+  --text-primary:#1F2937;--text-secondary:#6B7280;--border-color:#E5E7EB;--input-bg:#FFFFFF;
+}
+html.dark{
+  --sidebar-bg:#111827;--sidebar-text:#9CA3AF;--sidebar-text-hover:#F9FAFB;
+  --sidebar-active-bg:#374151;--sidebar-active-text:#F9FAFB;
+  --main-bg:#1F2937;--header-bg:#111827;--card-bg:#374151;
+  --text-primary:#F9FAFB;--text-secondary:#D1D5DB;--border-color:#4B5563;--input-bg:#4B5563;
+}
+
+/* Evitar scroll horizontal residual en algunas vistas */
+html, body { max-width:100%; overflow-x:hidden; }
+
+/* Transiciones generales */
+.sidebar,.main-content{transition:all .3s ease}
+
+/* Tipografía en tablas coherente con el tema */
+table { width:100%; }
+table th, table td { color: var(--text-primary); }
+html.dark table th, html.dark table td { color: var(--text-primary); }
+
+/* Inputs y selects coherentes con el tema */
+input, select, textarea {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+html.dark input, html.dark select, html.dark textarea {
+  background: var(--input-bg);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+input::placeholder, textarea::placeholder { color: var(--text-secondary); opacity:.9; }
+html.dark input::placeholder, html.dark textarea::placeholder { color: var(--text-secondary); }
+
+/* Badges de estado */
+.badge-paid{color:#065f46;background:#d1fae5}
+html.dark .badge-paid{color:#a7f3d0;background:rgba(16,185,129,.15)}
+.badge-pending{color:#92400e;background:#fef3c7}
+html.dark .badge-pending{color:#fde68a;background:rgba(245,158,11,.15)}
+
+/* Contenedor de filtros: scroll horizontal suave en móvil */
+.filters-wrap{scroll-behavior:smooth}
+@media (max-width:640px){
+  .filters-wrap{overflow-x:auto;white-space:nowrap}
+  .filters-wrap > *{min-width:220px}
+}
+
+/* Tabla responsive → tarjetas en móvil */
+@media (max-width:640px){
+  thead{display:none}
+  table{border-collapse:separate;border-spacing:0 12px}
+  tbody tr.row-card{
+    display:block;
+    background:var(--card-bg);
+    border:1px solid var(--border-color);
+    border-radius:14px;
+    box-shadow:0 1px 2px rgb(0 0 0 / .04);
+    overflow:hidden;
+  }
+  tbody tr.row-card > td{
+    display:grid !important;
+    grid-template-columns:120px 1fr;
+    gap:8px;
+    padding:10px 12px !important;
+    border-bottom:1px solid var(--border-color);
+  }
+  tbody tr.row-card > td:last-child{border-bottom:0}
+  tbody tr.row-card > td::before{
+    content:attr(data-label);
+    font-size:.72rem;
+    color:var(--text-secondary);
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  /* Forzar visibilidad de celdas ocultas por utilidades Tailwind */
+  tbody tr.row-card > td.hidden { display:grid !important; }
+
+  /* Checkbox fila */
+  td[data-label="Sel"]{
+    grid-template-columns:1fr;
+    align-items:center;
+    border-bottom:1px dashed var(--border-color);
+  }
+  td[data-label="Sel"]::before{content:''}
+
+  /* Acciones táctiles */
+  td[data-label="Acciones"]{
+    display:flex !important;
+    gap:8px;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 12px !important;
+  }
+  td[data-label="Acciones"]::before{content:''}
+  td[data-label="Acciones"] .p-2{
+    padding:.6rem !important;
+    border-radius:.65rem;
+    background:transparent;
+  }
+
+  /* KPIs compactos */
+  .kpi-card{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+  }
+
+  /* Paginación compacta */
+  #paginador button{
+    min-width:38px;
+    height:36px;
+    border-radius:10px;
+  }
+}
+
+/* Accesibilidad de foco en paginación */
+#paginador button:focus{
+  outline:2px solid #6366f1;
+  outline-offset:1px;
+}
