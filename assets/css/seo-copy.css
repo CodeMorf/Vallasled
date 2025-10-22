@@ -1,0 +1,68 @@
+/* Bloque SEO: tipografía, espaciado y colores */
+#seo-copy{
+  --seo-max: 72ch;
+  --seo-muted: #6b7280;
+  --seo-fg: #0f172a;
+  --seo-link: #2563eb;
+  --seo-bg: #ffffff;
+  color: var(--seo-fg);
+  background: var(--seo-bg);
+  margin: 3rem auto;
+  padding: 2rem 1.25rem;
+  max-width: var(--seo-max);
+  border-radius: 16px;
+  box-shadow: 0 2px 24px rgba(2,6,23,.06);
+  line-height: 1.7;
+}
+@media (prefers-color-scheme: dark){
+  #seo-copy{
+    --seo-fg:#e5e7eb; --seo-bg:#0b1220; --seo-muted:#94a3b8; --seo-link:#60a5fa;
+    box-shadow: 0 2px 24px rgba(0,0,0,.35);
+  }
+}
+
+#seo-copy h1{
+  font-size: clamp(1.5rem, 1.1rem + 2vw, 2.125rem);
+  font-weight: 800; letter-spacing: -.01em; margin: 0 0 .75rem;
+}
+#seo-copy p{ margin: .9rem 0; }
+#seo-copy strong{ font-weight: 700; }
+#seo-copy em{ font-style: italic; }
+#seo-copy a{ color: var(--seo-link); text-decoration: none; border-bottom: 1px solid rgba(37,99,235,.25); }
+#seo-copy a:hover{ border-bottom-color: currentColor; }
+
+#seo-copy ul{ margin: 1rem 0 0; padding-left: 1.25rem; }
+#seo-copy li{ margin: .4rem 0; }
+
+/* Plegado opcional para páginas con poco espacio */
+#seo-copy.is-collapsed{ max-height: 320px; overflow: hidden; position: relative; }
+#seo-copy.is-collapsed::after{
+  content:""; position:absolute; inset:auto 0 0 0; height:96px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--seo-bg) 80%);
+}
+
+/* Botón de expandir/colapsar */
+.seo-toggle{
+  display: inline-flex; align-items:center; gap:.5rem;
+  margin: .75rem 0 0; padding:.55rem .9rem; border-radius: 10px;
+  background: rgba(15,23,42,.06); color: var(--seo-fg); border: 1px solid rgba(148,163,184,.25);
+  cursor: pointer; font-weight: 600; user-select:none;
+}
+@media (prefers-color-scheme: dark){
+  .seo-toggle{ background: rgba(148,163,184,.08); }
+}
+
+/* Nube de keywords */
+.kw-cloud{
+  display:flex; flex-wrap:wrap; gap:.5rem; margin: 0 auto 2rem; max-width: var(--seo-max);
+}
+.kw-cloud .tag{
+  display:inline-block; padding:.4rem .7rem; border-radius:999px; font-size:.9rem;
+  background:#eef2ff; color:#111827; border:1px solid #e5e7eb;
+}
+@media (prefers-color-scheme: dark){
+  .kw-cloud .tag{ background:#0f172a; color:#e5e7eb; border-color:#1f2937; }
+}
+
+/* Contenedor */
+.prose{ max-width: var(--seo-max); }

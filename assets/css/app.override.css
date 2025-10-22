@@ -1,0 +1,44 @@
+/* Capa de overrides para no romper el core */
+@layer app-overrides {
+
+  /* Tokens: puedes personalizar sin editar app.min.css */
+  :root{
+    /* ejemplo: color de marca y alto del appbar */
+    --color-primary: #0ea5e9;
+    --appbar-h: 72px;
+  }
+
+  /* Evitar que estilos globales de .card en dark afecten fuera del catálogo */
+  #catalogo .card{
+    background:#0f172a !important;
+    border-color:#1f2a3a !important;
+    color:#e5e7eb !important;
+  }
+  #catalogo .border{
+    border-color:#1f2a3a !important;
+  }
+
+  /* Formularios legibles en dark mode dentro del catálogo */
+  @media (prefers-color-scheme: dark){
+    #catalogo label{ color:#9aa4b2 !important; }
+    #catalogo input[type=text],
+    #catalogo select{
+      background:#0b1220 !important;
+      color:#e5e7eb !important;
+      border-color:#1f2a3a !important;
+    }
+    #catalogo input[type=text]:focus,
+    #catalogo select:focus{
+      border-color:#3b82f6 !important;
+      box-shadow:0 0 0 3px rgba(59,130,246,.15) !important;
+      outline:0;
+    }
+  }
+
+  /* Badge de “LIVE” con buen contraste siempre */
+  .live-badge{ background:#ef4444; color:#fff; }
+
+  /* Si alguna página NO usa appbar, elimina el padding global sin tocar el core */
+  body.no-appbar{ padding-top:0 !important; }
+}
+/* fin app-overrides */
