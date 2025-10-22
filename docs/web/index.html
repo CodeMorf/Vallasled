@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VallasLED · README técnico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        /* --- Reset & Base Styles --- */
+        :root {
+            --bg-dark: #111827;      /* Gris oscuro principal */
+            --bg-medium: #1F2937;    /* Gris para elementos secundarios */
+            --bg-light: #374151;     /* Gris para bordes y hover */
+            --text-primary: #F9FAFB; /* Texto principal casi blanco */
+            --text-secondary: #9CA3AF;/* Texto secundario y títulos */
+            --accent: #38BDF8;       /* Azul claro para acentos */
+            --accent-hover: #7DD3FC;
+            --code-bg: #0F172A;      /* Fondo para bloques de código */
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* --- Layout --- */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            width: 280px;
+            padding: 2rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid var(--bg-light);
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem 3rem;
+        }
+        
+        header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--bg-light);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: var(--bg-medium);
+        }
+        
+        header img {
+            height: 40px;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        /* --- Sidebar Navigation --- */
+        .sidebar-nav h3 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav li a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: all 0.2s ease-in-out;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-nav li a:hover {
+            background-color: var(--bg-light);
+            color: var(--text-primary);
+        }
+
+        .sidebar-nav li a.active {
+            background-color: var(--accent);
+            color: var(--bg-dark);
+            font-weight: 500;
+        }
+        
+        /* --- Content Typography & Elements --- */
+        h2 {
+            font-size: 2.25rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--bg-light);
+            margin-top: 2.5rem;
+        }
+        h2:first-of-type {
+            margin-top: 0;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p, ul {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* --- Code Blocks & Inline Code --- */
+        code {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--code-bg);
+            color: var(--accent-hover);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--bg-light);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            white-space: pre;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #d1d5db; /* Lighter gray for pre content */
+        }
+        
+        /* Specific syntax highlight for shell comments */
+        pre code .comment {
+            color: #6b7280;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--bg-light);
+            }
+            
+            main {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://auth.vallasled.com/admin/assets/logo.png" alt="Logo de VallasLED">
+        <h1>README Técnico</h1>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <h3>Navegación</h3>
+                <ul id="nav-links">
+                    <!-- Links se generan dinámicamente con JS -->
+                </ul>
+            </nav>
+        </aside>
+
+        <main>
+            <section id="s0">
+                <h2>0. Resumen</h2>
+                <p><strong>Stack:</strong> aaPanel · Apache · Ubuntu · PHP 8.2 · MySQL 5.7 · phpMyAdmin.</p>
+                <p><strong>Patrón:</strong> PHP “pages + partials”, CSS estático, JS vanilla/minificado, ajustes de marca en BD.</p>
+                <p><strong>Caché:</strong> HTML y JSON en <code>/storage/cache/</code>.</p>
+                <p><strong>Nota:</strong> algunos paths pueden variar entre ramas. Valida con los comandos de la sección 12.</p>
+            </section>
+            
+            <section id="s1">
+                <h2>1. Árbol de carpetas (alto nivel)</h2>
+                <pre><code>/                     <span class="comment"># raíz web</span>
+│
+├─ index.php          <span class="comment"># Home</span>
+├─ /es/               <span class="comment"># Secciones por idioma</span>
+│   ├─ catalogo/      <span class="comment"># Listado y filtros</span>
+│   ├─ privacidad/    <span class="comment"># Páginas legales activas</span>
+│   └─ condiciones/
+│
+├─ /partials/         <span class="comment"># Plantillas comunes</span>
+│   ├─ header.php
+│   ├─ footer.php
+│   └─ head_meta.php
+│
+├─ /assets/
+│   ├─ css/
+│   │   ├─ home.css
+│   │   ├─ theme.css
+│   │   └─ components.css
+│   ├─ js/
+│   │   ├─ home.js
+│   │   └─ app.min.js
+│   ├─ img/           <span class="comment"># logos, íconos, placeholders</span>
+│   └─ fonts/
+│
+├─ /api/              <span class="comment"># Endpoints públicos (AJAX)</span>
+│   ├─ featured.php
+│   ├─ buscador.php
+│   ├─ valla.php
+│   ├─ detalles.php
+│   ├─ carritos/
+│   │   └─ api.php
+│   └─ web_settings/
+│       └─ api.php
+│
+├─ /web_settings/     <span class="comment"># Variante antigua o espejo del API de settings (si existe)</span>
+│   └─ api.php
+│
+├─ /config/           <span class="comment"># Bootstrap y helpers</span>
+│   ├─ bootstrap.php
+│   ├─ db.php
+│   └─ env.php
+│
+├─ /storage/
+│   ├─ cache/         <span class="comment"># HTML/JSON cacheado</span>
+│   └─ logs/          <span class="comment"># logs app (si aplica)</span>
+│
+├─ /asset/            <span class="comment"># Legado (antiguo “theme”)</span>
+│   ├─ header.php
+│   └─ color.php
+│
+└─ /privacidad/ y /terminos/  <span class="comment"># Páginas legales antiguas (ver §11 limpieza)</span></code></pre>
+            </section>
+            
+            <section id="s2">
+                <h2>2. Páginas y qué modifica cada una</h2>
+                <p><strong><code>index.php</code></strong></p>
+                <p>Hero, destacados, búsqueda por tipo, CTA.</p>
+                <p>Textos del hero:</p>
+                <ul>
+                    <li>H1: “Encuentra tu próxima valla publicitaria”</li>
+                    <li>P: “Busca ofertas en vallas LED, impresas, móviles y más.”</li>
+                </ul>
+                <p>Estilos del hero en <code>/assets/css/home.css</code>.</p>
+                
+                <p><strong><code>/es/catalogo/index.php</code></strong></p>
+                <p>Listado, filtros, paginación. Carga <code>app.min.js</code> y consume <code>/api/buscador.php</code>.</p>
+                
+                <p><strong>Páginas legales activas:</strong> <code>/es/privacidad/</code>, <code>/es/condiciones/</code>.</p>
+                <p>Si hay duplicados en <code>/privacidad/</code> y <code>/terminos/</code>, preferir las rutas con <code>/es/</code>.</p>
+                
+                <p><strong>Parciales:</strong></p>
+                <ul>
+                    <li><code>/partials/header.php</code> define &lt;head&gt;, navegación y estilos de tema desde BD.</li>
+                    <li><code>/partials/footer.php</code> enlaces legales y hoja de estilos del pie.</li>
+                </ul>
+            </section>
+
+            <section id="s3">
+                <h2>3. Estilos</h2>
+                <p><strong><code>/assets/css/home.css</code></strong></p>
+                <p>Estilos específicos de home. Cambio de color del hero con el degradado del logo: añadir al final:</p>
+                <pre><code>:root{
+  --logo-g1:#ff3b30; --logo-g2:#ff9500; --logo-g3:#ffd60a;
+  --logo-g4:#34c759; --logo-g5:#32ade6; --logo-g6:#5856d6;
+}
+.hero-text-content h1, .hero-text-content p{
+  background:linear-gradient(90deg,
+    var(--logo-g1) 0%, var(--logo-g2) 20%, var(--logo-g3) 38%,
+    var(--logo-g4) 56%, var(--logo-g5) 74%, var(--logo-g6) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}</code></pre>
+                
+                <p><strong><code>/assets/css/theme.css</code></strong></p>
+                <p>Variables y tokens de color generales. Se alimenta con settings de BD desde <code>header.php</code> cuando se imprime un &lt;style&gt; inline.</p>
+                
+                <p><strong><code>/asset/color.php</code></strong></p>
+                <p>Hoja de estilos legada que imprime colores desde BD con otras claves. Úsese solo si el layout antiguo está en uso.</p>
+            </section>
+            
+            <section id="s4">
+                 <h2>4. JavaScript</h2>
+                <p><strong><code>/assets/js/home.js</code></strong></p>
+                <p>Interacciones de portada. Lazy video, carruseles, CTA.</p>
+                <p><strong><code>/assets/js/app.min.js</code></strong></p>
+                <p>Bundle minificado para catálogo, ficha y carrito. Endpoints usados:</p>
+                <ul>
+                    <li><code>/api/buscador.php</code></li>
+                    <li><code>/api/featured.php</code></li>
+                    <li><code>/api/valla.php</code></li>
+                    <li><code>/api/detalles.php</code></li>
+                    <li><code>/api/carritos/api.php</code></li>
+                    <li><code>/api/web_settings/api.php</code> o <code>/web_settings/api.php</code> (ambos pueden existir)</li>
+                </ul>
+            </section>
+
+            <section id="s5">
+                <h2>5. Backend · Configuración y helpers</h2>
+                <p><strong><code>/config/bootstrap.php</code></strong></p>
+                <p>Arranque de sesión, carga de env, conexión PDO, funciones utilitarias.</p>
+                <p><strong><code>/config/db.php</code></strong></p>
+                <p>Credenciales MySQL 5.7 y <code>cm_db()</code>.</p>
+                <p><strong><code>/config/env.php</code></strong></p>
+                <p>Constantes de entorno: <code>APP_ENV</code>, <code>BASE_URL</code>, <code>CACHE_ENABLE</code>, <code>CACHE_TTL</code>, etc.</p>
+                <p>Funciones comunes esperadas:</p>
+                <ul>
+                    <li><code>web_setting($key, $default=null)</code> lee ajustes de la tabla <code>web_setting</code>.</li>
+                    <li><code>asset_url($path)</code> versionado de assets.</li>
+                    <li><code>cache_get/set/delete($key, $ttl)</code> envoltorio para <code>/storage/cache</code>.</li>
+                </ul>
+            </section>
+            
+            <section id="s6">
+                <h2>6. Web settings en BD (claves comunes)</h2>
+                <p>Tabla: <code>web_setting</code></p>
+                <p>Claves de tema y marca consumidas por <code>partials/header.php</code>:</p>
+                <ul>
+                    <li><code>primary_color</code></li>
+                    <li><code>primary_color_600</code></li>
+                    <li><code>text_color</code></li>
+                    <li><code>muted_color</code></li>
+                    <li><code>bg_color</code></li>
+                    <li><code>bg_soft_color</code></li>
+                    <li><code>border_color</code></li>
+                    <li><code>logo_url</code></li>
+                    <li><code>logo_width_px</code></li>
+                    <li><code>logo_height_px</code></li>
+                    <li><code>border_radius_px</code></li>
+                    <li><code>favicon_url</code></li>
+                    <li><code>legal_terms_url</code></li>
+                    <li><code>legal_privacy_url</code></li>
+                </ul>
+                <p>Claves sugeridas para parametrizar el hero (si se desea dinámico):</p>
+                <ul>
+                    <li><code>hero_gradient_css</code>    # CSS raw del gradiente</li>
+                    <li><code>hero_h1_text</code>         # string</li>
+                    <li><code>hero_p_text</code>          # string</li>
+                </ul>
+            </section>
+            
+            <section id="s7">
+                <h2>7. APIs públicas</h2>
+                <p><strong><code>GET /api/featured.php</code></strong></p>
+                <p>Lista de vallas destacadas. Parámetros: <code>limit</code>, <code>city</code>, <code>type</code>.</p>
+                <p><strong><code>GET /api/buscador.php</code></strong></p>
+                <p>Catálogo con filtros. Parámetros: <code>q</code>, <code>tipo</code>, <code>ciudad</code>, <code>precio_min</code>, <code>precio_max</code>, <code>page</code>, <code>per_page</code>, <code>orden</code>.</p>
+                <p><strong><code>GET /api/valla.php?id</code></strong></p>
+                <p>Datos básicos por ID.</p>
+                <p><strong><code>GET /api/detalles.php?id</code></strong></p>
+                <p>Detalle ampliado, fotos, disponibilidad.</p>
+                <p><strong><code>POST /api/carritos/api.php</code></strong></p>
+                <p>Operaciones del carrito. <code>action=add|remove|empty|checkout</code>, payload JSON.</p>
+                <p><strong><code>GET /api/web_settings/api.php</code></strong></p>
+                <p>JSON con settings de marca para front.</p>
+                <p>Respuestas en JSON. CORS solo para el mismo dominio. Rate-limit básico recomendado.</p>
+            </section>
+
+            <section id="s8">
+                <h2>8. Seguridad</h2>
+                <ul>
+                    <li><strong>Sesiones:</strong> <code>session.cookie_httponly=1</code>, <code>session.cookie_secure=1</code> en producción.</li>
+                    <li><strong>CSRF:</strong> token por formulario en POST. Validación en APIs mutadoras.</li>
+                    <li><strong>Salida HTML:</strong> <code>cm_h()</code> o <code>htmlspecialchars</code>.</li>
+                    <li><strong>Headers:</strong> <code>X-Content-Type-Options: nosniff</code>, <code>X-Frame-Options: SAMEORIGIN</code>, <code>Referrer-Policy: strict-origin-when-cross-origin</code>.</li>
+                    <li><strong>Subida de archivos:</strong> validar MIME y tamaño. Almacenar fuera de <code>/assets</code> si es posible.</li>
+                </ul>
+            </section>
+            
+            <section id="s9">
+                <h2>9. Caché</h2>
+                <ul>
+                    <li><strong>Directorio:</strong> <code>/storage/cache/</code>.</li>
+                    <li><strong>Borrar manual:</strong> eliminar archivos dentro de <code>/storage/cache/</code>.</li>
+                    <li><strong>Invalidación automática:</strong> al actualizar settings o publicar valla, borrar keys afectadas.</li>
+                </ul>
+            </section>
+            
+            <section id="s10">
+                <h2>10. Despliegue</h2>
+                <ul>
+                    <li>Subir cambios por SFTP o Git pull.</li>
+                    <li>Limpiar <code>/storage/cache/</code>.</li>
+                    <li>Revisar permisos: <code>storage/*</code> con escritura por usuario de Apache.</li>
+                    <li>Reiniciar Apache si cambian módulos.</li>
+                    <li>Verificar health con los checks de §13.</li>
+                </ul>
+            </section>
+            
+            <section id="s11">
+                <h2>11. Limpieza y duplicados</h2>
+                <p>Candidatos a remover si no están referenciados:</p>
+                <ul>
+                    <li><code>/css/app.min.css</code> fuera de <code>/assets/css/</code>.</li>
+                    <li><code>/privacidad/</code> y <code>/terminos/</code> si ya existen <code>/es/privacidad/</code> y <code>/es/condiciones/</code>.</li>
+                    <li><code>/api/web_settings.zip</code> u otros artefactos de trabajo.</li>
+                    <li><code>/ida/</code> o directorios de pruebas.</li>
+                    <li>Imágenes no usadas en <code>/assets/img/</code> detectadas con los comandos de §12.</li>
+                </ul>
+                <p>Mantener una copia previa antes de borrar.</p>
+            </section>
+
+            <section id="s12">
+                <h2>12. Verificación y mapeo real de uso</h2>
+                <p>Ejecutar en la raíz (SSH):</p>
+                <pre><code><span class="comment"># 12.1 Ubicar textos del hero</span>
+grep -Rni --include='*.php' 'Encuentra tu próxima valla' .
+
+<span class="comment"># 12.2 Quién usa app.min.js y home.css</span>
+grep -Rni --include='*.php' 'app.min.js\|home.css' .
+
+<span class="comment"># 12.3 Endpoints referenciados</span>
+grep -Rni --include='*.{php,js}' '/api/' .
+
+<span class="comment"># 12.4 Archivos no referenciados (lista rápida)</span>
+rg -g '!storage/**' -g '!vendor/**' -n 'assets/img/' | cut -d: -f1 | sort -u > /tmp/_refs.txt
+find assets/img -type f | sort -u > /tmp/_all.txt
+comm -23 /tmp/_all.txt /tmp/_refs.txt > /tmp/_unreferenced_imgs.txt
+wc -l /tmp/_unreferenced_imgs.txt
+
+<span class="comment"># 12.5 Duplicados por nombre</span>
+fdupes -r assets/ | sed '/^$/d' || true
+
+<span class="comment"># 12.6 Cache size</span>
+du -sh storage/cache</code></pre>
+            </section>
+            
+            <section id="s13">
+                <h2>13. Checklist de QA después de cambios</h2>
+                <ul>
+                    <li>Home carga sin errores 200 OK, TTFB < 600 ms.</li>
+                    <li>H1 y P del hero muestran gradiente del logo en Chrome, Firefox, Safari.</li>
+                    <li>Contraste legible sobre video/fondo.</li>
+                    <li>Catálogo filtra por tipo y ciudad. Paginación consistente.</li>
+                    <li>Carrito: añadir y eliminar ítems. Persistencia de sesión.</li>
+                    <li>Footer: links legales activos.</li>
+                    <li>Favicon y logo correctos en Desktop y móvil.</li>
+                    <li>Sin 404 en consola. Sin CORS errors.</li>
+                </ul>
+            </section>
+            
+            <section id="s14">
+                <h2>14. Cómo cambiar elementos de marca</h2>
+                <ul>
+                    <li><strong>Logo:</strong> subir a <code>/assets/img/logo.png</code> y actualizar <code>logo_url</code> en <code>web_setting</code>.</li>
+                    <li><strong>Favicon:</strong> <code>favicon_url</code> en <code>web_setting</code>.</li>
+                    <li><strong>Colores de tema:</strong> <code>primary_color</code>, <code>text_color</code>, etc. en <code>web_setting</code>.</li>
+                    <li><code>header.php</code> inyecta &lt;style&gt; con estas variables.</li>
+                    <li><strong>Hero gradiente:</strong> vía CSS en <code>/assets/css/home.css</code> (ver §3) o crear clave <code>hero_gradient_css</code> y que <code>header.php</code> la imprima.</li>
+                </ul>
+            </section>
+            
+            <section id="s15">
+                <h2>15. Base de datos mínima esperada</h2>
+                <ul>
+                    <li><code>web_setting</code> (key VARCHAR(64) PK, value TEXT)</li>
+                    <li><code>valla</code> (id PK, titulo, ciudad, precio, tipo, …)</li>
+                    <li><code>valla_media</code> (id, valla_id FK, url, orden)</li>
+                    <li><code>carrito</code> (id, session_id, created_at)</li>
+                    <li><code>carrito_item</code> (id, carrito_id FK, valla_id FK, qty)</li>
+                </ul>
+                <p>Índices en <code>valla(ciudad)</code>, <code>valla(tipo)</code>, <code>valla(precio)</code>.</p>
+            </section>
+            
+            <section id="s16">
+                <h2>16. Logs</h2>
+                <ul>
+                    <li><strong>Logs de Apache:</strong> <code>/var/log/apache2/access.log</code> y <code>error.log</code>.</li>
+                    <li><strong>Logs de app:</strong> <code>/storage/logs/app.log</code> si está habilitado en <code>env.php</code>.</li>
+                </ul>
+            </section>
+            
+            <section id="s17">
+                <h2>17. Roadmap de parametrización</h2>
+                <ul>
+                    <li>Mover textos del hero a <code>web_setting</code> (<code>hero_h1_text</code>, <code>hero_p_text</code>).</li>
+                    <li>Mover gradiente a <code>hero_gradient_css</code>.</li>
+                    <li>Consolidar <code>api/web_settings/api.php</code> y <code>web_settings/api.php</code> en una sola ruta.</li>
+                    <li>Eliminar CSS legado en <code>/asset/color.php</code> cuando no se use.</li>
+                </ul>
+            </section>
+
+            <section id="s18">
+                <h2>18. Troubleshooting</h2>
+                <ul>
+                    <li><strong>Cambios de CSS no aparecen:</strong> limpiar <code>/storage/cache/</code> y cache del navegador.</li>
+                    <li><strong>500 en catálogo:</strong> revisar <code>error.log</code> y credenciales en <code>/config/db.php</code>.</li>
+                    <li><strong>CORS en APIs:</strong> confirmar <code>Access-Control-Allow-Origin</code> solo para el host actual.</li>
+                    <li><strong>Fuentes no cargan:</strong> verificar rutas relativas en <code>theme.css</code>.</li>
+                </ul>
+            </section>
+            
+            <section id="s19">
+                <h2>19. Convenciones</h2>
+                <ul>
+                    <li><strong>PHP:</strong> <code>declare(strict_types=1);</code> en archivos nuevos.</li>
+                    <li><strong>Nombres:</strong> kebab-case para assets, snake_case para claves de BD.</li>
+                    <li><strong>Seguridad:</strong> siempre escapar salida HTML y validar input en APIs.</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('main section');
+            const navLinksContainer = document.getElementById('nav-links');
+
+            // --- 1. Generate navigation links dynamically ---
+            sections.forEach(section => {
+                const title = section.querySelector('h2').textContent;
+                const id = section.id;
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = `#${id}`;
+                link.textContent = title;
+                link.dataset.sectionId = id;
+                listItem.appendChild(link);
+                navLinksContainer.appendChild(listItem);
+            });
+            
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+            // --- 2. Observer to highlight active link on scroll ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove active class from all links
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        
+                        // Add active class to the current link
+                        const id = entry.target.id;
+                        const activeLink = document.querySelector(`.sidebar-nav a[data-section-id="${id}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }, { rootMargin: '-30% 0px -70% 0px' }); // Trigger when section is in the middle 30% of the viewport
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
