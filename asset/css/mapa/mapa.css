@@ -1,0 +1,25 @@
+/* /console/asset/css/mapa/mapa.css */
+/* Solo estilos del módulo mapa */
+
+.map-canvas{
+  height:420px;
+  border-radius:.75rem;
+  z-index:10;
+}
+
+/* Tarjetas de estilos */
+.map-style-card{cursor:pointer;transition:transform .2s,box-shadow .2s}
+.map-style-card:hover{transform:translateY(-4px);box-shadow:0 10px 15px -3px rgb(0 0 0 / .1),0 4px 6px -4px rgb(0 0 0 / .1)}
+.map-style-card input[type="radio"]{position:absolute;opacity:0;pointer-events:none}
+.map-style-card .ms-body{border:2px solid transparent;border-radius:.75rem;background:var(--main-bg)}
+.map-style-card input[type="radio"]:checked + .ms-body{box-shadow:0 0 0 3px #4f46e5}
+
+/* Utilidades locales */
+.text-sec{color:var(--text-secondary)}
+.badge{
+  display:inline-block;
+  padding:.15rem .5rem;
+  border-radius:999px;
+  font-size:.75rem;
+  border:1px solid var(--border-color);
+}

@@ -1,0 +1,35 @@
+/* Layout */
+.main-content { background: var(--main-bg); }
+.card { background: var(--card-bg); border:1px solid var(--border-color); border-radius:0.75rem; }
+.section { border:1px solid var(--border-color); border-radius:0.75rem; background:var(--card-bg); }
+.section > .section-head { padding:1rem; border-bottom:1px solid var(--border-color); }
+.section > .section-body { padding:1rem; }
+
+/* Buscador + listado */
+#emp-list { max-height:70vh; overflow-y:auto; }
+#emp-list button{
+  width:100%; text-align:left; padding:0.75rem; border-radius:0.75rem;
+  border:1px solid transparent; transition:background .15s, border-color .15s;
+}
+#emp-list button:hover{ background:var(--sidebar-active-bg); border-color:var(--border-color); }
+
+/* Tarjetas ACL (igual look que módulos) */
+#acl-urls .acl-row{
+  display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+  padding:.75rem .9rem; border:1px solid var(--border-color); border-radius:.75rem;
+  background:var(--card-bg);
+}
+#acl-urls .acl-row + .acl-row{ margin-top:.5rem; }
+#acl-urls .acl-left{ display:flex; align-items:center; gap:.75rem; }
+#acl-urls .acl-path{ font-size:.75rem; color:var(--text-secondary); }
+
+/* Checkbox consistente con el resto */
+#acl-urls input[type="checkbox"],
+#acl-urls input[type="radio"]{ width:1rem; height:1rem; accent-color:#4f46e5; }
+
+/* Botonera */
+button, .btn { cursor:pointer; }
+#acl-msg { min-height:1.25rem; }
+
+/* Dark friendliness */
+:root .pill{ background:rgba(79,70,229,.1); color:#4f46e5; border-radius:999px; padding:.15rem .5rem; font-size:.75rem; }
