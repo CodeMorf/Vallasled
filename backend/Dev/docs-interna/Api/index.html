@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor de API - VallasLED</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilo personalizado para un aspecto más limpio */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .method-get { background-color: #16a34a; color: white; }
+        .method-post { background-color: #d97706; color: white; }
+        .endpoint-card {
+            border: 1px solid #374151; /* gray-700 */
+            transition: all 0.2s ease-in-out;
+        }
+        .endpoint-card:hover {
+            border-color: #4f46e5; /* indigo-600 */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        code, .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+        
+        <!-- Encabezado de la Colección -->
+        <header class="mb-10 p-6 bg-gray-800 rounded-xl border border-gray-700">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="flex flex-col sm:flex-row items-center gap-6">
+                    <img src="https://auth.vallasled.com/admin/assets/logo.png" alt="Logo VallasLED" class="w-32 h-32 object-contain bg-white p-2 rounded-full shadow-lg">
+                    <div>
+                        <h1 class="text-3xl sm:text-4xl font-bold text-white">VallasLED API Interna</h1>
+                        <p class="text-gray-400 mt-2 text-lg">Colección para probar login, provincias, zonas y vallas. Incluye extracción de CSRF.</p>
+                    </div>
+                </div>
+                <button id="generateJsonBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200 mt-4 sm:mt-0 whitespace-nowrap">
+                    Generar JSON de Integración
+                </button>
+            </div>
+        </header>
+
+        <!-- Sección de Endpoints -->
+        <section>
+            <h2 class="text-2xl font-bold mb-6 border-b border-gray-700 pb-2">Endpoints de la API</h2>
+            <div class="space-y-6">
+
+                <!-- Endpoint 1: CSRF -->
+                <div class="endpoint-card bg-gray-800 rounded-lg p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="method-get font-bold py-1 px-3 rounded-md text-sm">GET</span>
+                        <h3 class="text-xl font-semibold text-white">1) CSRF · GET (extrae token)</h3>
+                    </div>
+                    <code class="text-green-400 bg-gray-900 p-3 rounded-md block w-full overflow-x-auto">
+                        {{baseUrl}}/console/auth/login/
+                    </code>
+                    <details class="mt-4">
+                        <summary class="cursor-pointer text-indigo-400 font-medium">Ver script de prueba</summary>
+                        <pre class="bg-gray-900 p-4 rounded-md mt-2 text-sm text-gray-300 overflow-x-auto"><code>const html = pm.response.text();
+const m = html.match(/name="csrf"\\s+value="([^"]+)"/);
+if (m) {
+  pm.environment.set('csrf', m[1]);
+  pm.test('CSRF encontrado', function(){ pm.expect(pm.environment.get('csrf')).to.exist; });
+} else {
+  pm.test('CSRF no encontrado', function(){ pm.expect.fail('No se pudo extraer CSRF'); });
+}</code></pre>
+                    </details>
+                </div>
+
+                <!-- Endpoint 2: Login -->
+                <div class="endpoint-card bg-gray-800 rounded-lg p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="method-post font-bold py-1 px-3 rounded-md text-sm">POST</span>
+                        <h3 class="text-xl font-semibold text-white">2) Login (AJAX)</h3>
+                    </div>
+                    <code class="text-yellow-400 bg-gray-900 p-3 rounded-md block w-full overflow-x-auto">
+                        {{baseUrl}}/console/ajax/auth/login.php
+                    </code>
+                    <h4 class="font-semibold mt-4 mb-2 text-gray-300">Cuerpo (x-www-form-urlencoded):</h4>
+                    <pre class="bg-gray-900 p-4 rounded-md text-sm text-gray-300 overflow-x-auto"><code>email={{email}}
+password={{password}}
+csrf={{csrf}}</code></pre>
+                </div>
+                
+                <!-- Endpoint 3: Provincias -->
+                <div class="endpoint-card bg-gray-800 rounded-lg p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="method-get font-bold py-1 px-3 rounded-md text-sm">GET</span>
+                        <h3 class="text-xl font-semibold text-white">3) Provincias · GET</h3>
+                    </div>
+                    <code class="text-green-400 bg-gray-900 p-3 rounded-md block w-full overflow-x-auto">
+                        {{baseUrl}}/api/provincias/
+                    </code>
+                </div>
+
+                <!-- Endpoint 4: Zonas Listar -->
+                <div class="endpoint-card bg-gray-800 rounded-lg p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="method-get font-bold py-1 px-3 rounded-md text-sm">GET</span>
+                        <h3 class="text-xl font-semibold text-white">4) Zonas · GET listar</h3>
+                    </div>
+                    <code class="text-green-400 bg-gray-900 p-3 rounded-md block w-full overflow-x-auto">
+                        {{baseUrl}}/api/zonas/
+                    </code>
+                </div>
+
+                <!-- Endpoint 5: Zonas Buscar -->
+                <div class="endpoint-card bg-gray-800 rounded-lg p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="method-get font-bold py-1 px-3 rounded-md text-sm">GET</span>
+                        <h3 class="text-xl font-semibold text-white">5) Zonas · GET buscar ?q=</h3>
+                    </div>
+                    <code class="text-green-400 bg-gray-900 p-3 rounded-md block w-full overflow-x-auto">
+                        {{baseUrl}}/api/zonas/?q={{q}}
+                    </code>
+                </div>
+                
+                <!-- Endpoint 6: Zonas Sugerir -->
+                <div class="endpoint-card bg-gray-800 rounded-lg p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="method-get font-bold py-1 px-3 rounded-md text-sm">GET</span>
+                        <h3 class="text-xl font-semibold text-white">6) Zonas · GET sugerir ?texto=</h3>
+                    </div>
+                    <code class="text-green-400 bg-gray-900 p-3 rounded-md block w-full overflow-x-auto">
+                        {{baseUrl}}/api/zonas/?a=sugerir&texto={{texto}}
+                    </code>
+                </div>
+
+                <!-- Endpoint 7: Zonas Crear -->
+                <div class="endpoint-card bg-gray-800 rounded-lg p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="method-post font-bold py-1 px-3 rounded-md text-sm">POST</span>
+                        <h3 class="text-xl font-semibold text-white">7) Zonas · POST crear</h3>
+                    </div>
+                    <code class="text-yellow-400 bg-gray-900 p-3 rounded-md block w-full overflow-x-auto">
+                        {{baseUrl}}/api/zonas/
+                    </code>
+                    <h4 class="font-semibold mt-4 mb-2 text-gray-300">Cuerpo (x-www-form-urlencoded):</h4>
+                    <pre class="bg-gray-900 p-4 rounded-md text-sm text-gray-300 overflow-x-auto"><code>nombre={{zona_nombre}}
+synonyms={{zona_synonyms_json}}</code></pre>
+                </div>
+                
+                <!-- Endpoint 8: Vallas Listar -->
+                <div class="endpoint-card bg-gray-800 rounded-lg p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="method-get font-bold py-1 px-3 rounded-md text-sm">GET</span>
+                        <h3 class="text-xl font-semibold text-white">8) Vallas · GET listar</h3>
+                    </div>
+                    <code class="text-green-400 bg-gray-900 p-3 rounded-md block w-full overflow-x-auto">
+                        {{baseUrl}}/api/vallas/?q={{q}}&publico={{publico}}&disp={{disp}}&page={{page}}&per_page={{per_page}}
+                    </code>
+                </div>
+
+                <!-- Endpoint 9: Vallas Crear -->
+                <div class="endpoint-card bg-gray-800 rounded-lg p-6">
+                    <div class="flex items-center gap-4 mb-3">
+                        <span class="method-post font-bold py-1 px-3 rounded-md text-sm">POST</span>
+                        <h3 class="text-xl font-semibold text-white">9) Vallas · POST crear</h3>
+                    </div>
+                    <code class="text-yellow-400 bg-gray-900 p-3 rounded-md block w-full overflow-x-auto">
+                        {{baseUrl}}/api/vallas/
+                    </code>
+                    <h4 class="font-semibold mt-4 mb-2 text-gray-300">Cuerpo (x-www-form-urlencoded):</h4>
+                    <pre class="bg-gray-900 p-4 rounded-md text-sm text-gray-300 overflow-x-auto"><code>tipo=led
+nombre=Av. 27 de Febrero | Pantalla LED 6x3
+provincia_id=1
+ubicacion=Esq. Núñez de Cáceres
+lat=18.4715
+lng=-69.9455
+medida=6x3m
+precio=75000
+zona=Zona Oriental
+descripcion=Pantalla con alto flujo vehicular
+audiencia_mensual=3200000
+spot_time_seg=10
+url_stream_pantalla=
+url_stream_trafico=
+mostrar_precio_cliente=1
+estado_valla=1
+visible_publico=1
+disponible=1
+numero_licencia=LIC-2025-00123
+fecha_vencimiento=2026-12-31</code></pre>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Sección de Variables -->
+        <section class="mt-12">
+            <h2 class="text-2xl font-bold mb-6 border-b border-gray-700 pb-2">Variables de la Colección</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">baseUrl</p>
+                    <code class="text-gray-300 mt-1 block">https://tu-dominio.com</code>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">email</p>
+                    <code class="text-gray-300 mt-1 block">admin@dominio.com</code>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">password</p>
+                    <code class="text-gray-300 mt-1 block">tu_password_seguro</code>
+                </div>
+                 <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">csrf</p>
+                    <code class="text-gray-300 mt-1 block">(extraído en paso 1)</code>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">q</p>
+                    <code class="text-gray-300 mt-1 block">(vacío)</code>
+                </div>
+                 <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">texto</p>
+                    <code class="text-gray-300 mt-1 block">Zona Oriental</code>
+                </div>
+                 <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">zona_nombre</p>
+                    <code class="text-gray-300 mt-1 block">Zona Oriental</code>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">zona_synonyms_json</p>
+                    <code class="text-gray-300 mt-1 block">["Santo Domingo Este","Z. Oriental"]</code>
+                </div>
+                 <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">publico</p>
+                    <code class="text-gray-300 mt-1 block">1</code>
+                </div>
+                 <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">disp</p>
+                    <code class="text-gray-300 mt-1 block">1</code>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">page</p>
+                    <code class="text-gray-300 mt-1 block">1</code>
+                </div>
+                 <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <p class="text-sm font-medium text-indigo-400">per_page</p>
+                    <code class="text-gray-300 mt-1 block">24</code>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal para mostrar el JSON -->
+    <div id="jsonModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-gray-800 text-gray-200 rounded-lg shadow-xl w-11/12 md:w-2/3 lg:w-1/2 max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b border-gray-700">
+                <h3 class="text-xl font-semibold">JSON de la Colección Postman</h3>
+                <button id="closeModalBtn" class="text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            </div>
+            <div class="p-4 overflow-y-auto">
+                <pre class="whitespace-pre-wrap break-all"><code id="jsonOutput" class="text-sm"></code></pre>
+            </div>
+            <div class="p-4 border-t border-gray-700 text-right">
+                <button id="downloadJsonBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200">
+                    Descargar Archivo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const generateJsonBtn = document.getElementById('generateJsonBtn');
+            const jsonModal = document.getElementById('jsonModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const downloadJsonBtn = document.getElementById('downloadJsonBtn');
+            const jsonOutput = document.getElementById('jsonOutput');
+
+            const postmanCollection = {
+              "info": {
+                "name": "VallasLED API Interna (cURL → Postman JSON)",
+                "description": "Colección para probar login, provincias, zonas y vallas. Incluye extracción de CSRF.",
+                "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+              },
+              "item": [
+                {
+                  "name": "1) CSRF · GET (extrae token)",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": "{{baseUrl}}/console/auth/login/"
+                  },
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "const html = pm.response.text();",
+                          "const m = html.match(/name=\"csrf\"\\s+value=\"([^\"]+)\"/);",
+                          "if (m) {",
+                          "  pm.environment.set('csrf', m[1]);",
+                          "  pm.test('CSRF encontrado', function(){ pm.expect(pm.environment.get('csrf')).to.exist; });",
+                          "} else {",
+                          "  pm.test('CSRF no encontrado', function(){ pm.expect.fail('No se pudo extraer CSRF'); });",
+                          "}"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "2) Login (AJAX)",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      { "key": "X-Requested-With", "value": "XMLHttpRequest" },
+                      { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        { "key": "email", "value": "{{email}}", "type": "text" },
+                        { "key": "password", "value": "{{password}}", "type": "text" },
+                        { "key": "csrf", "value": "{{csrf}}", "type": "text" }
+                      ]
+                    },
+                    "url": "{{baseUrl}}/console/ajax/auth/login.php"
+                  },
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.test('HTTP 200', function(){ pm.response.to.have.status(200); });",
+                          "let j={}; try{ j=pm.response.json(); }catch(e){}",
+                          "pm.test('Login ok', function(){ pm.expect(j.ok).to.be.true; });",
+                          "if (j.ok && j.redirect) pm.environment.set('portalUrl', j.redirect);"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                { "name": "3) Provincias · GET", "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/provincias/" } },
+                { "name": "4) Zonas · GET listar", "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/zonas/" } },
+                { "name": "5) Zonas · GET buscar ?q=", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/zonas/?q={{q}}", "host": [ "{{baseUrl}}" ], "path": [ "api", "zonas", "" ], "query": [ { "key": "q", "value": "{{q}}" } ] } } },
+                { "name": "6) Zonas · GET sugerir ?texto=", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/zonas/?a=sugerir&texto={{texto}}", "host": [ "{{baseUrl}}" ], "path": [ "api", "zonas", "" ], "query": [ { "key": "a", "value": "sugerir" }, { "key": "texto", "value": "{{texto}}" } ] } } },
+                { "name": "7) Zonas · POST crear", "request": { "method": "POST", "header": [ { "key": "X-Requested-With", "value": "XMLHttpRequest" }, { "key": "X-CSRF", "value": "{{csrf}}" }, { "key": "Content-Type", "value": "application/x-www-form-urlencoded" } ], "body": { "mode": "urlencoded", "urlencoded": [ { "key": "nombre", "value": "{{zona_nombre}}", "type": "text" }, { "key": "synonyms", "value": "{{zona_synonyms_json}}", "type": "text", "disabled": false } ] }, "url": "{{baseUrl}}/api/zonas/" } },
+                { "name": "8) Vallas · GET listar", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/vallas/?q={{q}}&publico={{publico}}&disp={{disp}}&page={{page}}&per_page={{per_page}}", "host": [ "{{baseUrl}}" ], "path": [ "api", "vallas", "" ], "query": [ { "key": "q", "value": "{{q}}" }, { "key": "publico", "value": "{{publico}}" }, { "key": "disp", "value": "{{disp}}" }, { "key": "page", "value": "{{page}}" }, { "key": "per_page", "value": "{{per_page}}" } ] } } },
+                { "name": "9) Vallas · POST crear", "request": { "method": "POST", "header": [ { "key": "X-Requested-With", "value": "XMLHttpRequest" }, { "key": "X-CSRF", "value": "{{csrf}}" }, { "key": "Content-Type", "value": "application/x-www-form-urlencoded" } ], "body": { "mode": "urlencoded", "urlencoded": [ { "key": "tipo", "value": "led" }, { "key": "nombre", "value": "Av. 27 de Febrero | Pantalla LED 6x3" }, { "key": "provincia_id", "value": "1" }, { "key": "ubicacion", "value": "Esq. Núñez de Cáceres" }, { "key": "lat", "value": "18.4715" }, { "key": "lng", "value": "-69.9455" }, { "key": "medida", "value": "6x3m" }, { "key": "precio", "value": "75000" }, { "key": "zona", "value": "Zona Oriental" }, { "key": "descripcion", "value": "Pantalla con alto flujo vehicular" }, { "key": "audiencia_mensual", "value": "3200000" }, { "key": "spot_time_seg", "value": "10" }, { "key": "url_stream_pantalla", "value": "" }, { "key": "url_stream_trafico", "value": "" }, { "key": "mostrar_precio_cliente", "value": "1" }, { "key": "estado_valla", "value": "1" }, { "key": "visible_publico", "value": "1" }, { "key": "disponible", "value": "1" }, { "key": "numero_licencia", "value": "LIC-2025-00123" }, { "key": "fecha_vencimiento", "value": "2026-12-31" } ] }, "url": "{{baseUrl}}/api/vallas/" } }
+              ],
+              "variable": [
+                { "key": "baseUrl", "value": "https://tu-dominio.com" },
+                { "key": "email", "value": "admin@dominio.com" },
+                { "key": "password", "value": "tu_password_seguro" },
+                { "key": "csrf", "value": "" },
+                { "key": "q", "value": "" },
+                { "key": "texto", "value": "Zona Oriental" },
+                { "key": "zona_nombre", "value": "Zona Oriental" },
+                { "key": "zona_synonyms_json", "value": "[\"Santo Domingo Este\",\"Z. Oriental\"]" },
+                { "key": "publico", "value": "1" },
+                { "key": "disp", "value": "1" },
+                { "key": "page", "value": "1" },
+                { "key": "per_page", "value": "24" }
+              ]
+            };
+
+            generateJsonBtn.addEventListener('click', () => {
+                const jsonString = JSON.stringify(postmanCollection, null, 2);
+                jsonOutput.textContent = jsonString;
+                jsonModal.classList.remove('hidden');
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                jsonModal.classList.add('hidden');
+            });
+
+            downloadJsonBtn.addEventListener('click', () => {
+                const jsonString = JSON.stringify(postmanCollection, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'VallasLED_API_Collection.postman_collection.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+            
+            // Cerrar modal al hacer clic fuera del contenido
+            jsonModal.addEventListener('click', (event) => {
+                if (event.target === jsonModal) {
+                    jsonModal.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

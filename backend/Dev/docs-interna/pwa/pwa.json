@@ -1,0 +1,269 @@
+{
+  "info": {
+    "name": "Vallas Admin - PWA (/console/pwa/)",
+    "description": "Verifica y prueba los recursos PWA: manifest, service worker e íconos. Incluye assets referenciados por sw.js.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": [
+          "if (!pm.environment.get('cacheBust')) {",
+          "  pm.environment.set('cacheBust', Date.now().toString());",
+          "}"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "https://tu-dominio.tld", "type": "string" },
+    { "key": "sessionCookie", "value": "PHPSESSID=tu_sesion", "type": "string" },
+    { "key": "csrfToken", "value": "", "type": "string" },
+    { "key": "cacheBust", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "PWA - manifest.json",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "application/json" },
+          { "key": "Cookie", "value": "{{sessionCookie}}", "disabled": false }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/console/pwa/manifest.json?v={{cacheBust}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', () => pm.response.to.have.status(200));",
+              "pm.test('Content-Type application/json', () => pm.expect((pm.response.headers.get('Content-Type')||'').toLowerCase()).to.include('application/json'));",
+              "const j = pm.response.json();",
+              "pm.test('Tiene name', () => pm.expect(j.name).to.exist);",
+              "pm.test('Tiene icons[]', () => pm.expect(Array.isArray(j.icons)).to.be.true);",
+              "pm.test('start_url presente', () => pm.expect(j.start_url).to.exist);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "PWA - sw.js",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Accept", "value": "*/*" },
+          { "key": "Cookie", "value": "{{sessionCookie}}", "disabled": false }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/console/pwa/sw.js?v={{cacheBust}}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', () => pm.response.to.have.status(200));",
+              "pm.test('Content-Type javascript', () => pm.expect((pm.response.headers.get('Content-Type')||'').toLowerCase()).to.include('javascript'));",
+              "pm.test('Contiene self.addEventListener', () => pm.expect(pm.response.text()).to.include('self.addEventListener'));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "PWA - Iconos",
+      "item": [
+        {
+          "name": "icon-192.png",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "image/png" },
+              { "key": "Cookie", "value": "{{sessionCookie}}", "disabled": false }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/console/pwa/icons/icon-192.png?v={{cacheBust}}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Content-Type image/png', () => pm.expect((pm.response.headers.get('Content-Type')||'').toLowerCase()).to.include('image/png'));",
+                  "pm.test('Tamaño > 1KB', () => pm.expect(pm.response.text().length).to.be.above(1024));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "icon-512.png",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "image/png" },
+              { "key": "Cookie", "value": "{{sessionCookie}}", "disabled": false }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/console/pwa/icons/icon-512.png?v={{cacheBust}}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Content-Type image/png', () => pm.expect((pm.response.headers.get('Content-Type')||'').toLowerCase()).to.include('image/png'));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "favicon-16.png",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "image/png" },
+              { "key": "Cookie", "value": "{{sessionCookie}}", "disabled": false }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/console/pwa/icons/favicon-16.png?v={{cacheBust}}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Content-Type image/png', () => pm.expect((pm.response.headers.get('Content-Type')||'').toLowerCase()).to.include('image/png'));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "favicon-32.png",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "image/png" },
+              { "key": "Cookie", "value": "{{sessionCookie}}", "disabled": false }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/console/pwa/icons/favicon-32.png?v={{cacheBust}}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Content-Type image/png', () => pm.expect((pm.response.headers.get('Content-Type')||'').toLowerCase()).to.include('image/png'));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Assets referenciados por sw.js",
+      "item": [
+        {
+          "name": "CSS - base.css",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "text/css" },
+              { "key": "Cookie", "value": "{{sessionCookie}}", "disabled": false }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/console/asset/css/base.css?v={{cacheBust}}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Content-Type text/css', () => pm.expect((pm.response.headers.get('Content-Type')||'').toLowerCase()).to.include('text/css'));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "CSS - dashboard.css",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "text/css" },
+              { "key": "Cookie", "value": "{{sessionCookie}}", "disabled": false }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/console/asset/css/dashboard.css?v={{cacheBust}}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Content-Type text/css', () => pm.expect((pm.response.headers.get('Content-Type')||'').toLowerCase()).to.include('text/css'));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "JS - dashboard.js",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "*/*" },
+              { "key": "Cookie", "value": "{{sessionCookie}}", "disabled": false }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/console/asset/js/dashboard.js?v={{cacheBust}}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Content-Type javascript', () => pm.expect((pm.response.headers.get('Content-Type')||'').toLowerCase()).to.include('javascript'));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

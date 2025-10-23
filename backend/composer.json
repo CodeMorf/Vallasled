@@ -1,0 +1,17 @@
+{
+    "require": {
+        "pusher/pusher-php-server": "^7.2",
+        "phpmailer/phpmailer": "^6.10",
+        "stripe/stripe-php": "^17.2",
+        "web-auth/webauthn-lib": "^4.8",
+        "nyholm/psr7": "^1.8",
+        "psr/http-message": "^1.1",
+        "openai-php/client": "^0.10",
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}

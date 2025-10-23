@@ -1,0 +1,224 @@
+{
+    "/console/facturacion/index.php": {
+        "hash": "sha256:0bc28849d29fb4a0dc76875e5f361331c76643fbf792a45b976bcffdf169747b"
+    },
+    "/console/facturacion/ncf/index.php": {
+        "hash": "sha256:698343b9c0da1ae566a4e4269ea92e90e9747c427a6eaa5c235f33cecf801cee"
+    },
+    "/console/facturacion/ncf/ajax/listar.php": {
+        "hash": "sha256:ced3cf626dd039686ae614cc12bec7f450c45976e671a412daf5cb65c164cb79"
+    },
+    "/console/facturacion/ncf/ajax/crud.php": {
+        "hash": "sha256:e426ac383a7b47e5d3ee5a908baac5cdccd331e95b36a71e87e3bc0663624d52"
+    },
+    "/console/facturacion/ncf/ajax/secuencias.php": {
+        "hash": "sha256:d1ebc157872abb1228c9643c8f1552a5781743c687a2e4660f5d1394ec18331c"
+    },
+    "/console/facturacion/crm/ajax/list.php": {
+        "hash": "sha256:a12692840c0cf62757e72524a29db2e0257a6c05d424c979d65bd955ac6ac0e3"
+    },
+    "/console/facturacion/ajax/kpi.php": {
+        "hash": "sha256:5f5bf28d1cdfc4e5cb8e13a7629ff06dfe73ead344c41c36778be21b909103d1"
+    },
+    "/console/facturacion/ajax/create.php": {
+        "hash": "sha256:2cc62779bb27b098d03f54f33262fdc178873056a432fb4bd523b03cb0ff9d78"
+    },
+    "/console/facturacion/ajax/list.php": {
+        "hash": "sha256:59f0b018c527fcd5f9fefe6d2055262e62852099abb80f5d3bfc8f8658c39b16"
+    },
+    "/console/facturacion/ajax/emitir.php": {
+        "hash": "sha256:9e264d674c3289b6becf3b5402e01e50437756b27f058fe9bf46750ad3f0cfd8"
+    },
+    "/console/facturacion/ajax/update.php": {
+        "hash": "sha256:1ca9d270fa642d213c52a4a7edf45a399ffbcbd5f71aff0401877f0510d42d93"
+    },
+    "/console/facturacion/datos-bancarios/index.php": {
+        "hash": "sha256:efacc4a2736193e02b7cf70074de0373e90f7f95c839bff0795a41f6bc7decf7"
+    },
+    "/console/facturacion/datos-bancarios/ajax/guardar.php": {
+        "hash": "sha256:8804bd69a467e2cf5dd02d18bd1e3df9f8c2c88ac75f75234dc9dfd56c748026"
+    },
+    "/console/facturacion/datos-bancarios/ajax/estados.php": {
+        "hash": "sha256:fa33240f8733028b20d7c8f7bbf591fe75ece1505e87a0fd39d1a6fe188ec3ba"
+    },
+    "/console/facturacion/datos-bancarios/ajax/listar.php": {
+        "hash": "sha256:0d5a21733b83b2b81450ceec281ed1eebbde2be25a3cd631a7af6b81173d1fb1"
+    },
+    "/console/facturacion/clientes/index.php": {
+        "hash": "sha256:6fbc0e0886c52bb7925df4ca888ce82ea98992d0ed752641caaec8c8a9167aad"
+    },
+    "/console/facturacion/clientes/ajax/create.php": {
+        "hash": "sha256:526d001aa45f250f07381b760e252e1497f6fce492fd48fe74f5e5361d6400df"
+    },
+    "/console/facturacion/clientes/ajax/importar.php": {
+        "hash": "sha256:960d389266874dfb5bf3dbe3858253114ba3bba9bb91cd8396d134943c0ccf0e"
+    },
+    "/console/facturacion/clientes/ajax/listar.php": {
+        "hash": "sha256:ae1f945734bbef25a5fcc4c8602df538598be18bd8c1724e94a88c9f43c097fc"
+    },
+    "/console/facturacion/facturas/crear.php": {
+        "hash": "sha256:786d69170720feaf1b1805ded773457211360c9c66cce48da529ab3b9afa785d"
+    },
+    "/console/facturacion/facturas/index.php": {
+        "hash": "sha256:d7ec40459de31f8d718dba75a5a7ceab0513ae4ee30b2d94a50f4c4ed3ce3e24"
+    },
+    "/console/facturacion/facturas/ajax/actualizar.php": {
+        "hash": "sha256:203c611722d5d6db3ad74bede5470fd885dbea7df037e6748e91ee602f729d00"
+    },
+    "/console/facturacion/facturas/ajax/buscar_clientes_crm.php": {
+        "hash": "sha256:3620c446c7ad36514170e1c98cad2610fbef2d1167478afc5753cb8928bd36ce"
+    },
+    "/console/facturacion/facturas/ajax/crear.php": {
+        "hash": "sha256:5d8729cf35bc81cf65fb74bf82c3dd382f9c23d11e1bfb18fcc313f60c591495"
+    },
+    "/console/facturacion/facturas/ajax/adjuntar_recibo_transferencia.php": {
+        "hash": "sha256:ad4bc2254da544ebb8a3b69811ba660348e41818ee9ffdac2f04ed847e80db7c"
+    },
+    "/console/facturacion/facturas/ajax/create.php": {
+        "hash": "sha256:3e17a0bae7107964ab80d31d9ec4363590fb92050bef043d70fed2e631a1a77b"
+    },
+    "/console/facturacion/facturas/ajax/listar_vallas.php": {
+        "hash": "sha256:e3d72aaddd80fcb48c9808a0b34d3552bf04548c8fe5392ac2fc1f2092de1c3c"
+    },
+    "/console/facturacion/facturas/ajax/bulk_actualizar_estado.php": {
+        "hash": "sha256:c30a9e14dcecd5a78de82034362643c202ddf8a997b2e23590bfcecd7379fc91"
+    },
+    "/console/facturacion/facturas/ajax/eliminar.php": {
+        "hash": "sha256:5d6c92afa0a9863fdc168585fa13d17c6fca70302b6748913a68a0523a8734c6"
+    },
+    "/console/facturacion/facturas/ajax/crear_cliente_rapido.php": {
+        "hash": "sha256:e9e5794f4fd2ffd92ef9c51a66e5b222e46b27f4cbc886b4ded434c19ae4c583"
+    },
+    "/console/facturacion/facturas/ajax/buscar_clientes_base.php": {
+        "hash": "sha256:199d78d7b8f4c261cdb3cb607b25859340d173b29c7abad6f042cf1349c2afa9"
+    },
+    "/console/facturacion/facturas/ajax/listar.php": {
+        "hash": "sha256:fbe56f997b274e4a5f7529a71f107e8064ecf6b1c0c723e931387361af48b139"
+    },
+    "/console/facturacion/facturas/ajax/preview_comision.php": {
+        "hash": "sha256:46afa947ec3b21bb8c8e4db87fd6740fe526c284b423c55f19866c5ccf1901bf"
+    },
+    "/console/facturacion/facturas/ajax/cambiar_estado.php": {
+        "hash": "sha256:e59fe21dc413edb4fabb08e99a436f3c1c36df8484fcee4d2891ba2d90025526"
+    },
+    "/console/facturacion/facturas/ver.php": {
+        "hash": "sha256:78e4c01c3ce9f2527c2eb822b7a496d0ce9c912994565e61a31736c5d2645da7"
+    },
+    "/console/vallas/agregar/index.php": {
+        "hash": "sha256:2058bdff6a6ad745b7ba8fc82be39ad8dbde0b55b17ead78373eeb787e3ccc6e"
+    },
+    "/console/vallas/agregar/ajax/guardar.php": {
+        "hash": "sha256:7d323dc2c98cba7502ff0cb3595f27797b685252560f01a81f170ed9053703d5"
+    },
+    "/console/vallas/agregar/ajax/index.php": {
+        "hash": "sha256:5dfbc75acd9f6f2770d76a42d27715591f71c4854ea3943f53946b4a2a1920ee"
+    },
+    "/console/vallas/agregar/ajax/google-mapas.php": {
+        "hash": "sha256:f51835c93d6bb82638e3ea4222b3b01733f2738c4e26d41552ce5c06924a21c3"
+    },
+    "/console/vallas/agregar/ajax/upload-imagen.php": {
+        "hash": "sha256:f6a38b7a9825173383a57d3172caae9a433fad889c09f4d1fc8479c485b8d037"
+    },
+    "/console/vallas/agregar/ajax/handler.php": {
+        "hash": "sha256:d95b1dd6c84088e3332e4ccbe5693bf7bc1bd8b203b6c959a0cd1573cd57190a"
+    },
+    "/console/vallas/agregar/index (1).php": {
+        "hash": "sha256:e554635732ba4aedb954a7c48d1257199935f38596321241178e71c5ae5289dc"
+    },
+    "/console/vallas/index.php": {
+        "hash": "sha256:00b43576c6cfb29e9aa8b42283d25dfc1ff7d326b0b2ed58c3770067669f6edf"
+    },
+    "/console/vallas/editar.php": {
+        "hash": "sha256:3d8cae1f94711fc89db7ab9ce9bf70a5e02825a9ad5023ef6c6f2231e7aa7cd3"
+    },
+    "/console/vallas/ajax/upload.php": {
+        "hash": "sha256:cae7bc671d1280b7a7f24f3bbdb987b1a25ced030fc0bff5b0df7c3eb73a801a"
+    },
+    "/console/vallas/ajax/create.php": {
+        "hash": "sha256:c580466e518e2447c1692fc88ae62f0be0fa571c5e7eea72037734efce823f7b"
+    },
+    "/console/vallas/ajax/delete.php": {
+        "hash": "sha256:14b7ac8472bfad453bab2751c8d6381959f81392735e27d8d1dda11d3b400cd2"
+    },
+    "/console/vallas/ajax/media_set_principal.php": {
+        "hash": "sha256:ab16605a012922b736165a72fb44f7f768f2d26fd48e34f2bc917cb3142aceeb"
+    },
+    "/console/vallas/ajax/list.php": {
+        "hash": "sha256:eff6d92d397587982d17c1db7fc1f8f1268fe3fbeee3fd5b5d9e274d9c802485"
+    },
+    "/console/vallas/ajax/gmaps-key.php": {
+        "hash": "sha256:0ecc6e8cb92d46e10054da17c279cca918e1577331b1f42023d6042c5ae6e81d"
+    },
+    "/console/vallas/ajax/reorder.php": {
+        "hash": "sha256:83843f2bc1cba5cf685b91b738ee8a67b5ff982e07a834ea663b4376ba0ce965"
+    },
+    "/console/vallas/ajax/destacados_create.php": {
+        "hash": "sha256:f542a6428d9c1c3b1f16381e54fcdfcad67e39f068590d16d1e8105119d3bcc9"
+    },
+    "/console/vallas/index (84).php": {
+        "hash": "sha256:554b1889d975d38ac7c4aad64c8a4b1229433578282187c12f7c1870b3b707bd"
+    },
+    "/console/vallas/editar/index.php": {
+        "hash": "sha256:87ed2b45a6d72a342d013abf88a36089ef5ddb47f49b842554cefb399ea1e88a"
+    },
+    "/console/vallas/editar/ajax/actualizar.php": {
+        "hash": "sha256:2b1c9fe84c5c51efaf204f4c3a7996bd508fa34cb09654fa08c9acef7a2ebf36"
+    },
+    "/console/vallas/editar/ajax/guardar.php": {
+        "hash": "sha256:85725dd63a46d30b8851eef103eb96ed66d7ebdd94c47083a1ec36e757f68647"
+    },
+    "/console/portal/index.php": {
+        "hash": "sha256:a58cf6580fccd9d047598da06d1534df8b01f635b4067d06165a27fad9e1b250"
+    },
+    "/console/portal/ajax/licencias_proximas.php": {
+        "hash": "sha256:524acef5e3828dd17cfd5ab398b9c1e0fc71f4667ecdbbf922285a997601ecf7"
+    },
+    "/console/portal/ajax/dashboard.php": {
+        "hash": "sha256:c6edb6ab09a6ecc6e009a96b0375a05992b59d2a1b37dae2d2f66a6f3f02e326"
+    },
+    "/console/portal/ajax/reservas_recientes.php": {
+        "hash": "sha256:c5c82dcf53c5b66263e3e57133c9f1a6d7334e20b9ef776fd8d162988660b471"
+    },
+    "/console/portal/ajax/vallas_recientes.php": {
+        "hash": "sha256:e92998e6fa88756c76b90e003de1969f749ce2d1edd7f4d17edf8af0e2cc8783"
+    },
+    "/console/portal/ajax/summary.php": {
+        "hash": "sha256:54f2a9bf1c6d3f3b178b9840f116136f328a389df1b14058f0761e55f27d3f0d"
+    },
+    "/console/portal/ajax/revenue.php": {
+        "hash": "sha256:ab51b72279370a26f46eb3df046e30726b83b0948e1ef244c45dae27f026ae04"
+    },
+    "/console/portal/ajax/types.php": {
+        "hash": "sha256:a61f09a203ffde335eaec46d0cc6cd2395fac1e0bbe54b3c810d52e4d030b7f7"
+    },
+    "/console/reservas/index.php": {
+        "hash": "sha256:6119e62be802e4492cfcee05e29ac398c55d744284d31e5453deef14dc7034af"
+    },
+    "/console/reservas/lib/gcal.php": {
+        "hash": "sha256:3d15e6432ae4843a0d0002247402530362ac4332d79bed135a1b89ad7c3883f2"
+    },
+    "/console/reservas/modal_form.php": {
+        "hash": "sha256:4fda45f46887977c6f5d93b9b67ff07889633f9ae24808802853bbd263c3ed16"
+    },
+    "/console/reservas/ajax/gcal_events.php": {
+        "hash": "sha256:5587b7cc0a3eda5e5649e6306c7286a6ab2b433fa1c8c1aff81287e8e2ce1db4"
+    },
+    "/console/reservas/ajax/guardar.php": {
+        "hash": "sha256:5b4aaa62ed4bab43089a38d2f6b79299a2aca55d4cf0dafd599569c3be1465c8"
+    },
+    "/console/reservas/ajax/gcal_disconnect.php": {
+        "hash": "sha256:0ec402c4c57e9313f333d6df7f1e029f55d1cc0ef44564bed12709038a1672d6"
+    },
+    "/console/reservas/ajax/gcal_status.php": {
+        "hash": "sha256:19648e2db87761e5099300741bd87c82991deb6ae5af77101c6331ce31573a59"
+    },
+    "/console/reservas/ajax/gcal_start.php": {
+        "hash": "sha256:faab6c2044714493d195146c3d018eb06257a3149daff0fd4c24f38f4f6c1f71"
+    },
+    "/console/reservas/ajax/listar.php": {
+        "hash": "sha256:dd835a9db446a9b31416106fe0f3218695c6d4a1c1366055fc71e7c6e1a74f08"
+    },
+    "/console/reservas/gcal/callback.php": {
+        "hash": "sha256:0ea81d7a2e1abc6064e8352c41c3cb2b7e2c85050808b8dda36c26b67cd5acfe"
+    }
+}

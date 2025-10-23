@@ -1,0 +1,1 @@
+Couldn't find the requested file /locales/es.js in fullcalendar.

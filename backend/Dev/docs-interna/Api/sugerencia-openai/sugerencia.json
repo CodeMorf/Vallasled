@@ -1,0 +1,49 @@
+{
+  "info": {
+    "name": "VallasLED · OpenAI Sugerencia",
+    "description": "Endpoints GET/POST para /api/openai/sugerencia/",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "OpenAI · GET sugerir",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": {
+          "raw": "{{baseUrl}}/api/openai/sugerencia/?text={{texto}}&target={{target}}&max_tokens={{max_tokens}}&temperature={{temperature}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api","openai","sugerencia",""],
+          "query": [
+            { "key": "text", "value": "{{texto}}" },
+            { "key": "target", "value": "{{target}}" },
+            { "key": "max_tokens", "value": "{{max_tokens}}" },
+            { "key": "temperature", "value": "{{temperature}}" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "OpenAI · POST sugerir",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Accept", "value": "application/json" },
+          { "key": "X-Requested-With", "value": "XMLHttpRequest" },
+          { "key": "X-CSRF", "value": "{{csrf}}" },
+          { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "text", "value": "{{texto}}" },
+            { "key": "target", "value": "{{target}}" },
+            { "key": "max_tokens", "value": "{{max_tokens}}" },
+            { "key": "temperature", "value": "{{temperature}}" }
+          ]
+        },
+        "url": "{{baseUrl}}/api/openai/sugerencia/"
+      }
+    }
+  ]
+}

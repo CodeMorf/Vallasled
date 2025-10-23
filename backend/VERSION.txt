@@ -1,0 +1,4 @@
+Plataforma de Alquiler de Vallas
+Versión: 1.0.0
+Fecha: 2025-05-15
+Desarrollado en PHP puro
